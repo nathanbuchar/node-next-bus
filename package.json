@@ -1,0 +1,19 @@
+{
+  "name": "node-next-bus",
+  "version": "1.0.0",
+  "description": "Interactive command line interface for SFMTA public transit predictions.",
+  "main": "index.js",
+  "private": true,
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Nathan Buchar",
+  "license": "UNLICENSED",
+  "bin": {
+    "nextbus": "index.js"
+  },
+  "dependencies": {
+    "inquirer": "^1.0.3",
+    "request": "^2.72.0"
+  }
+}

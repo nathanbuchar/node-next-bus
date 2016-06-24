@@ -1,0 +1,10 @@
+.DS_Store
+.atomignore
+.env
+.gitconfig
+.tmp
+
+*~
+*.bak
+
+node_modules
