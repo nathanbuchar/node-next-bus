@@ -33,5 +33,6 @@ $ nextbus --agency sf-muni --route 21
 
 &copy; 2016 [Nathan Buchar]. All rights reserved.
 
+:bus: :two_hearts:
 
 [Nathan Buchar]: mailto:hello@nathanbuchar.com
