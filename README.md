@@ -3,6 +3,8 @@ node-next-bus
 
 Interactive command line interface for public transit predictions supported by NextBus web services.
 
+![](doc/demo.jpg)
+
 ***
 
 #### Quick Start
