@@ -1,7 +1,7 @@
 {
   "name": "node-next-bus",
   "version": "1.0.0",
-  "description": "Interactive command line interface for SFMTA public transit predictions.",
+  "description": "Interactive command line interface for public transit predictions supported by NextBus web services.",
   "main": "index.js",
   "private": true,
   "scripts": {

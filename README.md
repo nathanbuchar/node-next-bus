@@ -1,7 +1,7 @@
 node-next-bus
 =============
 
-Interactive command line interface for SFMTA public transit predictions.
+Interactive command line interface for public transit predictions supported by NextBus web services.
 
 ***
 
