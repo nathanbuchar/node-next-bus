@@ -12,7 +12,8 @@
   "dependencies": {
     "inquirer": "^1.0.3",
     "pixl-xml": "^1.0.7",
-    "request": "^2.72.0"
+    "request": "^2.72.0",
+    "yargs": "^4.7.1"
   },
   "bin": {
     "nextbus": "bin/cli.js"

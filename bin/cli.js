@@ -3,14 +3,21 @@
 'use strict';
 
 const inquirer = require('inquirer');
+const yargs = require('yargs');
 
 const nextBus = require('../');
+
+const argvAgency = yargs.argv.a || yargs.argv.agency;
+const argvRoute = yargs.argv.r || yargs.argv.route;
+const argvStop = yargs.argv.s || yargs.argv.stop;
+const argvDirection = yargs.argv.d || yargs.argv.direction;
 
 inquirer.prompt([
   {
     name: 'agency',
     message: 'Choose a transit agency',
     type: 'list',
+    when: !argvAgency,
     choices() {
       return new Promise((resolve, reject) => {
         nextBus.getAgencies().then(data => {
@@ -30,10 +37,11 @@ inquirer.prompt([
     name: 'route',
     message: 'Choose a route',
     type: 'list',
+    when: !argvRoute,
     choices(answers) {
       return new Promise((resolve, reject) => {
         nextBus.getRoutes({
-          agency: answers.agency
+          agency: answers.agency || argvAgency
         }).then(data => {
           const routes = data.map(route => {
             return {
@@ -51,11 +59,12 @@ inquirer.prompt([
     name: 'direction',
     message: 'Choose a direction',
     type: 'list',
+    when: !argvDirection,
     choices(answers) {
       return new Promise((resolve, reject) => {
         nextBus.getRouteDirections({
-          agency: answers.agency,
-          route: answers.route
+          agency: answers.agency || argvAgency,
+          route: answers.route || argvRoute
         }).then(data => {
           const directions = data.map(direction => {
             return {
@@ -73,12 +82,13 @@ inquirer.prompt([
     name: 'stop',
     message: 'Choose a stop',
     type: 'list',
+    when: !argvStop,
     choices(answers) {
       return new Promise((resolve, reject) => {
         nextBus.getRouteStopsByDirection({
-          agency: answers.agency,
-          route: answers.route,
-          direction: answers.direction
+          agency: answers.agency || argvAgency,
+          route: answers.route || argvRoute,
+          direction: answers.direction || argvDirection
         }).then(data => {
           const stops = data.map(stop => {
             return {
@@ -94,9 +104,9 @@ inquirer.prompt([
   }
 ]).then(answers => {
   nextBus.getRouteStopPredictions({
-    agency: answers.agency,
-    route: answers.route,
-    stop: answers.stop
+    agency: answers.agency || argvAgency,
+    route: answers.route || argvRoute,
+    stop: answers.stop || argvStop
   }).then(data => {
     const predictions = data.map(d => d.minutes);
 

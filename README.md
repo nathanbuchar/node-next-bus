@@ -24,6 +24,11 @@ Then simply call the `nextbus` binary.
 $ nextbus
 ```
 
+Speed things up a bit.
+```
+$ nextbus --agency sf-muni --route 21
+```
+
 ***
 
 &copy; 2016 [Nathan Buchar]. All rights reserved.
