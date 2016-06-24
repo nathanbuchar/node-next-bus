@@ -93,11 +93,10 @@ inquirer.prompt([
     }
   }
 ]).then(answers => {
-  nextBus.getRouteStopPredictionsByDirection({
+  nextBus.getRouteStopPredictions({
     agency: answers.agency,
     route: answers.route,
-    stop: answers.stop,
-    direction: answers.direction
+    stop: answers.stop
   }).then(data => {
     const predictions = data.map(d => d.minutes);
 
