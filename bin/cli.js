@@ -17,7 +17,7 @@ inquirer.prompt([
           const agencies = data.map(agency => {
             return {
               name: `${agency.title} (${agency.tag})`,
-              value: agency.tag,
+              value: agency.tag
             };
           });
 
@@ -38,7 +38,7 @@ inquirer.prompt([
           const routes = data.map(route => {
             return {
               name: route.title,
-              value: route.tag,
+              value: route.tag
             };
           });
 
@@ -60,7 +60,7 @@ inquirer.prompt([
           const directions = data.map(direction => {
             return {
               name: direction.title,
-              value: direction.tag,
+              value: direction.tag
             };
           });
 
@@ -83,7 +83,7 @@ inquirer.prompt([
           const stops = data.map(stop => {
             return {
               name: stop.title,
-              value: stop.tag,
+              value: stop.tag
             };
           });
 
