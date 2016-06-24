@@ -9,11 +9,12 @@
   },
   "author": "Nathan Buchar",
   "license": "UNLICENSED",
-  "bin": {
-    "nextbus": "index.js"
-  },
   "dependencies": {
     "inquirer": "^1.0.3",
+    "pixl-xml": "^1.0.7",
     "request": "^2.72.0"
+  },
+  "bin": {
+    "nextbus": "bin/cli.js"
   }
 }
