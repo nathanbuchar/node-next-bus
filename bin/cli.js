@@ -20,16 +20,18 @@ inquirer.prompt([
     when: !argvAgency,
     choices() {
       return new Promise((resolve, reject) => {
-        nextBus.getAgencies().then(data => {
-          const agencies = data.map(agency => {
-            return {
-              name: `${agency.title} (${agency.tag})`,
-              value: agency.tag
-            };
-          });
-
-          resolve(agencies);
+        nextBus.getAgencies().then(agencies => {
+          resolve(
+            agencies.map(agency => {
+              return {
+                name: `${agency.title} (${agency.tag})`,
+                value: agency.tag
+              };
+            })
+          );
         });
+      }).catch(err => {
+        console.log(err);
       });
     }
   },
@@ -42,15 +44,15 @@ inquirer.prompt([
       return new Promise((resolve, reject) => {
         nextBus.getRoutes({
           agency: answers.agency || argvAgency
-        }).then(data => {
-          const routes = data.map(route => {
-            return {
-              name: `${route.title} (${route.tag})`,
-              value: route.tag
-            };
-          });
-
-          resolve(routes);
+        }).then(routes => {
+          resolve(
+            routes.map(route => {
+              return {
+                name: `${route.title} (${route.tag})`,
+                value: route.tag
+              };
+            })
+          );
         });
       });
     }
@@ -62,18 +64,18 @@ inquirer.prompt([
     when: !argvDirection,
     choices(answers) {
       return new Promise((resolve, reject) => {
-        nextBus.getRouteDirections({
+        nextBus.getDirections({
           agency: answers.agency || argvAgency,
           route: answers.route || argvRoute
-        }).then(data => {
-          const directions = data.map(direction => {
-            return {
-              name: `${direction.title} (${direction.tag})`,
-              value: direction.tag
-            };
-          });
-
-          resolve(directions);
+        }).then(directions => {
+          resolve(
+            directions.map(direction => {
+              return {
+                name: `${direction.title} (${direction.tag})`,
+                value: direction.tag
+              };
+            })
+          );
         });
       });
     }
@@ -85,33 +87,33 @@ inquirer.prompt([
     when: !argvStop,
     choices(answers) {
       return new Promise((resolve, reject) => {
-        nextBus.getRouteStopsByDirection({
+        nextBus.getStopsByDirection({
           agency: answers.agency || argvAgency,
           route: answers.route || argvRoute,
           direction: answers.direction || argvDirection
-        }).then(data => {
-          const stops = data.map(stop => {
-            return {
-              name: `${stop.title} (${stop.tag})`,
-              value: stop.tag
-            };
-          });
-
-          resolve(stops);
+        }).then(stops => {
+          resolve(
+            stops.map(stop => {
+              return {
+                name: `${stop.title} (${stop.tag})`,
+                value: stop.tag
+              };
+            })
+          );
         });
       });
     }
   }
 ]).then(answers => {
-  nextBus.getRouteStopPredictions({
+  nextBus.getStopPredictions({
     agency: answers.agency || argvAgency,
     route: answers.route || argvRoute,
     stop: answers.stop || argvStop
-  }).then(data => {
-    const predictions = data.map(d => d.minutes);
+  }).then(predictions => {
+    const minutes = predictions.map(p => p.minutes);
 
     if (predictions.length) {
-      console.log('Minutes remaining: ' + predictions.join(', '));
+      console.log('Minutes remaining: ' + minutes.join(', '));
     } else {
       console.log('None in transit');
     }
